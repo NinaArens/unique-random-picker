@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.ms-List-cell label {
+  display: inline-block !important;
+}
+
+.root-32, .root_29bebc2d {
+  float: left !important;
+}
+
+.root_29bebc2d {
+  margin-right: 5px !important;
+} 
