@@ -16,15 +16,15 @@ export class ChoiceInput extends React.Component<AppProps, AppState> {
         super(props);
     }
 
-    handleClick = () => {      
-        this.props.addChoice(this.textField ? (this.textField.value ? this.textField.value : '') : '');
-    }
-
     render() {
         return (
             <div>
                 <TextField ref={me => this.textField = me} />
-                <Button text="Add" onClick={() => {this.handleClick(); }}/>
+                <Button
+                    text="Add"
+                    onClick={() => this.props.addChoice(this.textField ?
+                        (this.textField.value ? this.textField.value : '') : '')}
+                />
             </div>
         );
     }

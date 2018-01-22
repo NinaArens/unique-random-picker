@@ -31,6 +31,12 @@ class App extends React.Component<AppProps, AppState> {
     this.setState({choices: [...this.state.choices, choice]});
   }
 
+  removeChoice = (key: number): void => {
+    let choices = this.state.choices.slice();
+    choices = choices.splice(key, 1);
+    this.setState({choices: choices});
+  }
+
   render() {
     return (
       <div className="ms-Grid">
@@ -43,7 +49,7 @@ class App extends React.Component<AppProps, AppState> {
           <div className="ms-Grid-col ms-md4">
             <ChoiceInput addChoice={this.addChoice} />
             <div className="ms-clearfix" />
-            <ChoiceList choices={this.state.choices} />
+            <ChoiceList choices={this.state.choices} removeChoice={this.removeChoice} />
           </div>
           <div className="ms-Grid-col ms-md4">
             <RandomPicker />
@@ -51,7 +57,7 @@ class App extends React.Component<AppProps, AppState> {
           <div className="ms-Grid-col ms-md4">
             <Button text="Reset" />
             <div className="ms-clearfix" />
-            <ChoiceList choices={[]} />
+            <ChoiceList choices={[]} removeChoice={this.removeChoice} />
           </div>
         </div>
       </div>
