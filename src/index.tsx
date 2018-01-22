@@ -11,29 +11,56 @@ import { Button } from 'office-ui-fabric-react';
 
 initializeIcons(/* optional base url */);
 
-ReactDOM.render(
-  <div className="ms-Grid">
-    <div className="ms-Grid-row">
-      <div className="ms-Grid-col">
-        <h1 className="ms-fontColor-themePrimary ms-font-su">Unique random picker</h1>
+interface AppProps {
+  
+}
+
+interface AppState {
+  choices: string[];
+}
+
+class App extends React.Component<AppProps, AppState> {
+  constructor(props: AppProps, state: AppState) {
+    super(props, state);
+    this.state = {
+      choices: [],
+    };
+  }
+
+  addChoice = (choice: string): void =>  {
+    this.setState({choices: [...this.state.choices, choice]});
+  }
+
+  render() {
+    return (
+      <div className="ms-Grid">
+        <div className="ms-Grid-row">
+          <div className="ms-Grid-col">
+            <h1 className="ms-fontColor-themePrimary ms-font-su">Unique random picker</h1>
+          </div>
+        </div>
+        <div className="ms-Grid-row">
+          <div className="ms-Grid-col ms-md4">
+            <ChoiceInput addChoice={this.addChoice} />
+            <div className="ms-clearfix" />
+            <ChoiceList choices={this.state.choices} />
+          </div>
+          <div className="ms-Grid-col ms-md4">
+            <RandomPicker />
+          </div>
+          <div className="ms-Grid-col ms-md4">
+            <Button text="Reset" />
+            <div className="ms-clearfix" />
+            <ChoiceList choices={[]} />
+          </div>
+        </div>
       </div>
-    </div>
-    <div className="ms-Grid-row">
-      <div className="ms-Grid-col ms-md4">
-        <ChoiceInput />
-        <div className="ms-clearfix" />
-        <ChoiceList />
-      </div>
-      <div className="ms-Grid-col ms-md4">
-        <RandomPicker />
-      </div>
-      <div className="ms-Grid-col ms-md4">
-        <Button text="Reset" />
-        <div className="ms-clearfix" />
-        <ChoiceList />
-      </div>
-    </div>
-  </div>,
-  document.getElementById('root') as HTMLElement
-);
+    );
+  }
+}
 registerServiceWorker();
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);

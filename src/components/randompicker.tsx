@@ -2,15 +2,11 @@ import * as React from 'react';
 import { Button, Label } from 'office-ui-fabric-react';
 
 interface AppProps {
-
-}
-
-interface AppState {
     
 }
 
-export class RandomPicker extends React.Component<AppProps, AppState> {
-    constructor(props: AppProps, state: AppState) {
+export class RandomPicker extends React.Component<AppProps> {
+    constructor(props: AppProps) {
         super(props);
     }
 
