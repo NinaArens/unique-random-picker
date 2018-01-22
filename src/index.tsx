@@ -23,18 +23,20 @@ class App extends React.Component<AppProps, AppState> {
   constructor(props: AppProps, state: AppState) {
     super(props, state);
     this.state = {
-      choices: [],
+      choices: localStorage.getItem('choices') ? localStorage.getItem('choices')!.split(',') : [],
     };
   }
 
   addChoice = (choice: string): void =>  {
     this.setState({choices: [...this.state.choices, choice]});
+    localStorage.setItem('choices', [...this.state.choices, choice].toString());
   }
 
   removeChoice = (key: number): void => {
     let choices = this.state.choices.slice();
-    choices = choices.splice(key, 1);
+    choices.splice(key - 1, 1);
     this.setState({choices: choices});
+    localStorage.setItem('choices', choices.toString());
   }
 
   render() {
