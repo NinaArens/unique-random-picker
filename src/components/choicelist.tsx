@@ -3,7 +3,7 @@ import { List, IconButton, Label } from 'office-ui-fabric-react';
 
 interface AppProps {
     choices: string[];
-    removeChoice: (key: number) => void;
+    removeChoice: (index: number, list: string[]) => void;
 }
 
 interface AppState {
@@ -22,7 +22,7 @@ export class ChoiceList extends React.Component<AppProps, AppState> {
                     iconProps={{ iconName: 'Delete' }}
                     title="Delete"
                     ariaLabel="Delete"
-                    onClick={() => this.props.removeChoice(index + 1)}
+                    onClick={() => this.props.removeChoice(index, this.props.choices)}
                 />
                 <Label>{item}</Label>
             </div>
