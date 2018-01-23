@@ -53,6 +53,9 @@ class App extends React.Component<AppProps, AppState> {
       this.setState({ waitingChoices: choices });
       localStorage.setItem('waitingChoices', choices.toString());
       if (choices.length === 0) {
+        if (this.state.pickedChoice.length === 0) {
+          this.setState({ resetDisabled: true });
+        }
         this.setState({ pickerDisabled: true });
       }
     } else if (list === this.state.usedChoices) {
@@ -75,7 +78,8 @@ class App extends React.Component<AppProps, AppState> {
     this.setState({
       waitingChoices: this.state.waitingChoices.concat(this.state.usedChoices.concat(this.state.pickedChoice)),
       pickedChoice: '',
-      pickerDisabled: false
+      pickerDisabled: false,
+      resetDisabled: true
     });
     localStorage.setItem(
       'waitingChoices',
